@@ -108,6 +108,9 @@ class ArchiveUploader:
         """Upload all device files of each release"""
         exitcode = 0
         releases = self.find_releases()
+        num_files = sum([len(r) for r in releases])
+        print(f"Found {len(releases)} releases with a total of {num_files} files")
+
         for release_id, release in releases.items():
             try:
                 identifier = f"grapheneos_release_{release_id}"
