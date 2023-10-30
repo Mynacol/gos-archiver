@@ -1,0 +1,13 @@
+steps:
+  gos-archiver:
+    image: 'python:3-alpine'
+    pull: true
+    commands:
+      - pip install -r requirements.txt
+      - echo "$INTERNETARCHIVE_CREDENTIALS" > ~/.ia
+      - python gos-archiver.py
+    secrets: [ internetarchive_credentials ]
+
+when:
+  branch: main
+  event: deployment
