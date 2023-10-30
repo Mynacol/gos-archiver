@@ -10,4 +10,4 @@ steps:
 
 when:
   branch: main
-  event: deployment
+  event: [ cron, manual ]
