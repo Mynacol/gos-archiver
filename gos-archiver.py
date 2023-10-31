@@ -60,10 +60,6 @@ class ArchiveUploader:
         """Upload all device files for the specified GrapheneOS release"""
         item = self.ia.get_item(identifier)
 
-        if not item.identifier_available():
-            # This release was already uploaded
-            return 0
-
         all_files = release
         returncode = 0
 
@@ -72,7 +68,10 @@ class ArchiveUploader:
             # Download files
             try:
                 for file in files:
-                    if os.path.exists(file['filename']):
+                    ia_file = self.ia.File(item, file['filename'])
+                    if ia_file and ia_file.size > 0:
+                        print(f"File {file['filename']} already on archive.org")
+                    elif os.path.exists(file['filename']):
                         print(f"File {file['filename']} already downloaded")
                         local_files.append(file['filename'])
                     else:
