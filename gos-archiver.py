@@ -100,6 +100,9 @@ class ArchiveUploader:
                 print(traceback.format_exc(), file=sys.stderr)
                 returncode = 1
 
+            for file in local_files:
+                os.remove(file)
+
         return returncode
 
 
