@@ -92,6 +92,8 @@ class ArchiveUploader:
                     if code != 200:
                         print(f"Upload failed with status code '{code}' for file: {f}", file=sys.stderr)
                         print_error = True
+                    else:
+                        print(f"Uploaded files {local_files}")
 
                 if print_error:
                     returncode = 1
