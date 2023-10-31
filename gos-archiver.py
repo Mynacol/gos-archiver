@@ -35,7 +35,7 @@ def download_file(url):
 class ArchiveUploader:
     def __init__(self, internetarchive = ia):
         self.ia = internetarchive
-        self.chunksize = 20
+        self.chunksize = 3 # 3 files per device
 
     def find_releases(self):
         everything = {}
